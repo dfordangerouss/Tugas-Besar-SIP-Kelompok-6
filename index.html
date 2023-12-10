@@ -84,6 +84,10 @@
                         <th scope="row">Nama</th>\
                         <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
                     </tr>\
+                      <tr>\
+                        <th scope="row">Jenis Sekolah</th>\
+                        <td>' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
                     <tr>\
                         <th scope="row">Kecamatan</th>\
                         <td>' + (feature.properties['Desc_Kecam'] !== null ? autolinker.link(feature.properties['Desc_Kecam'].toLocaleString()) : '') + '</td>\
@@ -91,10 +95,6 @@
                     <tr>\
                         <th scope="row">Alamat</th>\
                         <td>' + (feature.properties['Desc_Alama'] !== null ? autolinker.link(feature.properties['Desc_Alama'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Jenis Sekolah</th>\
-                        <td>' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -162,21 +162,21 @@
                         <th scope="row">Nama</th>\
                         <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <th scope="row">Sekolah</th>\
-                        <td>' + (feature.properties['Poin.fix_D'] !== null ? autolinker.link(feature.properties['Poin.fix_D'].toLocaleString()) : '') + '</td>\
+                 <tr>\
+                        <th scope="row">Jumlah Penduduk Kecamatan</th>\
+                        <td>' + (feature.properties['Poin.fix_1'] !== null ? autolinker.link(feature.properties['Poin.fix_1'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Jumlah Sekolah</th>\
                         <td>' + (feature.properties['Poin.fix_J'] !== null ? autolinker.link(feature.properties['Poin.fix_J'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <th scope="row">Jumlah Penduduk Kecamatan</th>\
-                        <td>' + (feature.properties['Poin.fix_1'] !== null ? autolinker.link(feature.properties['Poin.fix_1'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
+                <tr>\
                         <th scope="row">LQ</th>\
                         <td>' + (feature.properties['Poin.fix_L'] !== null ? autolinker.link(feature.properties['Poin.fix_L'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                 <tr>\
+                        <th scope="row">Sekolah</th>\
+                        <td>' + (feature.properties['Poin.fix_D'] !== null ? autolinker.link(feature.properties['Poin.fix_D'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
