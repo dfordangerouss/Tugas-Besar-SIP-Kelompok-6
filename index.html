@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1292px;
+            height: 778px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Sekolah_4.js"></script>
+        <script src="data/Kecamatan_5.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-7.3909721136640405,112.50467007147978],[-7.1282009122128756,112.94037302740873]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_Positron_0');
+        map.getPane('pane_Positron_0').style.zIndex = 400;
+        var layer_Positron_0 = L.tileLayer('https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+            pane: 'pane_Positron_0',
+            opacity: 1.0,
+            attribution: '<a href="https://cartodb.com/basemaps/">Map tiles by CartoDB, under CC BY 3.0. Data by OpenStreetMap, under ODbL.</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_Positron_0;
+        map.addLayer(layer_Positron_0);
+        map.createPane('pane_HasilOverlay_1');
+        map.getPane('pane_HasilOverlay_1').style.zIndex = 401;
+        var img_HasilOverlay_1 = 'data/HasilOverlay_1.png';
+        var img_bounds_HasilOverlay_1 = [[-7.346987436386118,112.61146579859826],[-7.2051126633073785,112.81054028984626]];
+        var layer_HasilOverlay_1 = new L.imageOverlay(img_HasilOverlay_1,
+                                              img_bounds_HasilOverlay_1,
+                                              {pane: 'pane_HasilOverlay_1'});
+        bounds_group.addLayer(layer_HasilOverlay_1);
+        map.createPane('pane_HasilKernelDensityPersebaranSekolahJenjangSMASMK_2');
+        map.getPane('pane_HasilKernelDensityPersebaranSekolahJenjangSMASMK_2').style.zIndex = 402;
+        var img_HasilKernelDensityPersebaranSekolahJenjangSMASMK_2 = 'data/HasilKernelDensityPersebaranSekolahJenjangSMASMK_2.png';
+        var img_bounds_HasilKernelDensityPersebaranSekolahJenjangSMASMK_2 = [[-7.346987436386118,112.61146579859826],[-7.2051126633073785,112.81054028984626]];
+        var layer_HasilKernelDensityPersebaranSekolahJenjangSMASMK_2 = new L.imageOverlay(img_HasilKernelDensityPersebaranSekolahJenjangSMASMK_2,
+                                              img_bounds_HasilKernelDensityPersebaranSekolahJenjangSMASMK_2,
+                                              {pane: 'pane_HasilKernelDensityPersebaranSekolahJenjangSMASMK_2'});
+        bounds_group.addLayer(layer_HasilKernelDensityPersebaranSekolahJenjangSMASMK_2);
+        map.createPane('pane_HasilIDWKecamatan_3');
+        map.getPane('pane_HasilIDWKecamatan_3').style.zIndex = 403;
+        var img_HasilIDWKecamatan_3 = 'data/HasilIDWKecamatan_3.png';
+        var img_bounds_HasilIDWKecamatan_3 = [[-7.351718512848791,112.59147370062931],[-7.182286442484742,112.8472500438402]];
+        var layer_HasilIDWKecamatan_3 = new L.imageOverlay(img_HasilIDWKecamatan_3,
+                                              img_bounds_HasilIDWKecamatan_3,
+                                              {pane: 'pane_HasilIDWKecamatan_3'});
+        bounds_group.addLayer(layer_HasilIDWKecamatan_3);
+        function pop_Sekolah_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Nama</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kecamatan</th>\
+                        <td>' + (feature.properties['Desc_Kecam'] !== null ? autolinker.link(feature.properties['Desc_Kecam'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Alamat</th>\
+                        <td>' + (feature.properties['Desc_Alama'] !== null ? autolinker.link(feature.properties['Desc_Alama'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Jenis Sekolah</th>\
+                        <td>' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Sekolah_4_0(feature) {
+            switch(String(feature.properties['layer'])) {
+                case 'SMA':
+                    return {
+                pane: 'pane_Sekolah_4',
+                radius: 5.1999999999999975,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,0,208,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'SMK':
+                    return {
+                pane: 'pane_Sekolah_4',
+                radius: 5.1999999999999975,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,167,13,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Sekolah_4');
+        map.getPane('pane_Sekolah_4').style.zIndex = 404;
+        map.getPane('pane_Sekolah_4').style['mix-blend-mode'] = 'normal';
+        var layer_Sekolah_4 = new L.geoJson(json_Sekolah_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Sekolah_4',
+            layerName: 'layer_Sekolah_4',
+            pane: 'pane_Sekolah_4',
+            onEachFeature: pop_Sekolah_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Sekolah_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Sekolah_4);
+        map.addLayer(layer_Sekolah_4);
+        function pop_Kecamatan_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Nama</th>\
+                        <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Sekolah</th>\
+                        <td>' + (feature.properties['Poin.fix_D'] !== null ? autolinker.link(feature.properties['Poin.fix_D'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Jumlah Sekolah</th>\
+                        <td>' + (feature.properties['Poin.fix_J'] !== null ? autolinker.link(feature.properties['Poin.fix_J'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Jumlah Penduduk Kecamatan</th>\
+                        <td>' + (feature.properties['Poin.fix_1'] !== null ? autolinker.link(feature.properties['Poin.fix_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">LQ</th>\
+                        <td>' + (feature.properties['Poin.fix_L'] !== null ? autolinker.link(feature.properties['Poin.fix_L'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Kecamatan_5_0() {
+            return {
+                pane: 'pane_Kecamatan_5',
+                radius: 6.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+        }
+        function style_Kecamatan_5_1() {
+            return {
+                pane: 'pane_Kecamatan_5',
+                radius: 1.3124999999999998,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Kecamatan_5');
+        map.getPane('pane_Kecamatan_5').style.zIndex = 405;
+        map.getPane('pane_Kecamatan_5').style['mix-blend-mode'] = 'normal';
+        var layer_Kecamatan_5 = new L.geoJson.multiStyle(json_Kecamatan_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Kecamatan_5',
+            layerName: 'layer_Kecamatan_5',
+            pane: 'pane_Kecamatan_5',
+            onEachFeature: pop_Kecamatan_5,
+            pointToLayers: [function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Kecamatan_5_0(feature));
+            },function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Kecamatan_5_1(feature));
+            },
+        ]});
+        bounds_group.addLayer(layer_Kecamatan_5);
+        map.addLayer(layer_Kecamatan_5);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/Kecamatan_5.png" /> Kecamatan': layer_Kecamatan_5,'Sekolah<br /><table><tr><td style="text-align: center;"><img src="legend/Sekolah_4_SMA0.png" /></td><td>SMA</td></tr><tr><td style="text-align: center;"><img src="legend/Sekolah_4_SMK1.png" /></td><td>SMK</td></tr></table>': layer_Sekolah_4,"Hasil IDW Kecamatan": layer_HasilIDWKecamatan_3,"Hasil Kernel Density Persebaran Sekolah Jenjang SMA SMK": layer_HasilKernelDensityPersebaranSekolahJenjangSMASMK_2,"Hasil Overlay": layer_HasilOverlay_1,"Positron": layer_Positron_0,}).addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
+</html>
